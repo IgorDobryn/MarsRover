@@ -1,6 +1,6 @@
 class MarsRover
 
-	def initialize(x, y, direction, plateue)
+  def initialize(x, y, direction, plateue)
     @position = {:x => x, :y => y}
     @directions = %w"N W S E"
     @direction = @directions.index direction
@@ -15,17 +15,17 @@ class MarsRover
   end
 
   def move(movement)
-  	movement.upcase.split('').each { |symbol| @actions[symbol].call }
-	end
+    movement.upcase.split('').each { |symbol| @actions[symbol].call }
+  end
 
-	def position
-	  [@position[:x], @position[:y], @directions[@direction]].join " "
-	end
+  def position
+    [@position[:x], @position[:y], @directions[@direction]].join " "
+  end
 
 end
 
 if ARGV.empty?
-  p "There is no input file"
+  puts "There is no input file"
   return
 end
 
@@ -38,7 +38,7 @@ File.open(ARGV[0], "r") do |infile|
     rover = MarsRover.new x.to_i, y.to_i, direction, plateue
     rover.move infile.gets.delete("\n")
 
-    p rover.position
+    puts rover.position
     output.write rover.position + "\n" if output
   end
 end
